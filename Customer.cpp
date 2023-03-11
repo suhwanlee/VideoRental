@@ -1,21 +1,18 @@
 // Customer.cc
-#include <sstream>
 #include <vector>
 #include "Customer.h"
 
-using std::ostringstream;
-using std::vector;
+using namespace std;
 
-std::string Customer::statement()
+string Customer::statement()
 {
 	double totalAmount = 0.;
 	int frequentRenterPoints = 0;
 
-	std::vector<Rental> myRent = customerRentals;
+	vector<Rental> myRent = customerRentals;
 
 	// result will be returned by statement()
-	std::ostringstream result;
-	result << "Rental Record for " << getName() << "\n";
+	string result = receiptTop();
 
 	for (Rental rent : myRent) {
 		
@@ -23,16 +20,15 @@ std::string Customer::statement()
 		double thisAmount = rent.calcCost(rent);
 
 		// Add frequent renter points
-		frequentRenterPoints = rent.calcRentPoint(rent);		
+		frequentRenterPoints += rent.calcRentPoint(rent);		
 
 		// Show figures for this rental
-		result << "\t" << rent.getMovie().getTitle() << "\t" << thisAmount << std::endl;
+		result += receiptBody(rent.getMovie().getTitle(), thisAmount);
 		totalAmount += thisAmount;
 	}
 
 	// Add footer lines
-	result << "Amount owed is " << totalAmount << "\n";
-	result << "You earned " << frequentRenterPoints << " frequent renter points";
+	result += receiptBotton(totalAmount, frequentRenterPoints);
 
-	return result.str();
+	return result;
 }
