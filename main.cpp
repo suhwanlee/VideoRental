@@ -24,6 +24,7 @@ int main()
     customer.addRental({ pop1 , 2 });
 
     cout << customer.statement() << endl;
+    cout << customer.getResultNew() << endl;
 
     return 0;
 }
