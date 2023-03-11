@@ -15,7 +15,7 @@ public:
   Customer();
   explicit Customer( const string& name );
 
-  void addRental( const Rental& arg );
+  void addRental(Movie* movie, int rentedDay);
   string getName() const;
 
   // Generate a statement for the customer
@@ -51,7 +51,7 @@ inline Customer::Customer() {}
 inline Customer::Customer( const string& name ): 
   customerName( name ) {}
 
-inline void Customer::addRental( const Rental& arg ) { customerRentals.push_back( arg ); }
+inline void Customer::addRental(Movie* movie, int rentedDay) { customerRentals.push_back({ *movie,rentedDay }); }
 
 inline string Customer::getName() const { return customerName; }
 
