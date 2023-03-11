@@ -8,7 +8,6 @@ public:
   static const int CHILDRENS   = 2;
   static const int REGULAR     = 0;
   static const int NEW_RELEASE = 1;
-  static const int SCIENCE_FICTiON = 2;
 
   Movie( const std::string& title, int priceCode = REGULAR );
 
