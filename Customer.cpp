@@ -19,25 +19,20 @@ std::string Customer::statement()
 
 	for (Rental rent : myRent) {
 		
-		double thisAmount = rent.getCost(rent);
+		// Add rent cost
+		double thisAmount = rent.calcCost(rent);
 
 		// Add frequent renter points
-		frequentRenterPoints++;
-
-		// Add bonus for a two day new release rental
-		if ((rent.getMovie().getPriceCode() == Movie::NEW_RELEASE)
-			&& rent.getDaysRented() > 1) frequentRenterPoints++;
+		frequentRenterPoints = rent.calcRentPoint(rent);		
 
 		// Show figures for this rental
-		result << "\t" << rent.getMovie().getTitle() << "\t"
-			<< thisAmount << std::endl;
+		result << "\t" << rent.getMovie().getTitle() << "\t" << thisAmount << std::endl;
 		totalAmount += thisAmount;
 	}
 
 	// Add footer lines
 	result << "Amount owed is " << totalAmount << "\n";
-	result << "You earned " << frequentRenterPoints
-		<< " frequent renter points";
+	result << "You earned " << frequentRenterPoints << " frequent renter points";
 
 	return result.str();
 }

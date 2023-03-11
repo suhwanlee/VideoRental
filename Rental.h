@@ -9,7 +9,7 @@ public:
 
   int getDaysRented() const;
   const Movie& getMovie() const;
-  double getCost(Rental rent) {
+  double calcCost(Rental rent) {
 	  double cost = 0.;
 	  // Determine amounts for each rental
 	  switch (rent.getMovie().getPriceCode()) {
@@ -32,6 +32,17 @@ public:
 	  }
 
 	  return cost;
+  }
+
+  int calcRentPoint(Rental rent) {
+	  int point;
+	  // Add bonus for a two day new release rental
+	  if ((rent.getMovie().getPriceCode() == Movie::NEW_RELEASE) && rent.getDaysRented() > 1) 
+		  point = 2;
+	  else
+		  point = 1;
+
+	  return point;
   }
 
 private:
