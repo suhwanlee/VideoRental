@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 #include "Rental.h"
 
 // The customer class represents the customer of the store

@@ -8,59 +8,36 @@ using std::vector;
 
 std::string Customer::statement()
 {
-  double totalAmount = 0.;
-  int frequentRenterPoints = 0;
+	double totalAmount = 0.;
+	int frequentRenterPoints = 0;
 
-  std::vector< Rental >::iterator iter = customerRentals.begin();
-  std::vector< Rental >::iterator iter_end = customerRentals.end();
+	std::vector<Rental> myRent = customerRentals;
 
-  // result will be returned by statement()
-  std::ostringstream result;
-  result << "Rental Record for " << getName() << "\n";
+	// result will be returned by statement()
+	std::ostringstream result;
+	result << "Rental Record for " << getName() << "\n";
 
-  // Loop over customer's rentals
-  for ( ; iter != iter_end; ++iter ) {
+	for (Rental rent : myRent) {
+		
+		double thisAmount = rent.getCost(rent);
 
-    double thisAmount = 0.;
-    Rental each = *iter;
+		// Add frequent renter points
+		frequentRenterPoints++;
 
-    // Determine amounts for each rental
-    switch ( each.getMovie().getPriceCode() ) {
+		// Add bonus for a two day new release rental
+		if ((rent.getMovie().getPriceCode() == Movie::NEW_RELEASE)
+			&& rent.getDaysRented() > 1) frequentRenterPoints++;
 
-      case Movie::REGULAR:
-        thisAmount += 2.;
-        if ( each.getDaysRented() > 2 )
-          thisAmount += ( each.getDaysRented() - 2 ) * 1.5 ;
-        break;
+		// Show figures for this rental
+		result << "\t" << rent.getMovie().getTitle() << "\t"
+			<< thisAmount << std::endl;
+		totalAmount += thisAmount;
+	}
 
-      case Movie::NEW_RELEASE:
-        thisAmount += each.getDaysRented() * 3;
-        break;
+	// Add footer lines
+	result << "Amount owed is " << totalAmount << "\n";
+	result << "You earned " << frequentRenterPoints
+		<< " frequent renter points";
 
-      case Movie::CHILDRENS:
-        thisAmount += 1.5;
-        if ( each.getDaysRented() > 3 )
-          thisAmount += ( each.getDaysRented() - 3 ) * 1.5;
-        break;
-    }
-
-    // Add frequent renter points
-    frequentRenterPoints++;
-
-    // Add bonus for a two day new release rental
-    if ( ( each.getMovie().getPriceCode() == Movie::NEW_RELEASE )
-         && each.getDaysRented() > 1 ) frequentRenterPoints++;
-
-    // Show figures for this rental
-    result << "\t" << each.getMovie().getTitle() << "\t"
-           << thisAmount << std::endl;
-    totalAmount += thisAmount;
-  }
-
-  // Add footer lines
-  result << "Amount owed is " << totalAmount << "\n";
-  result << "You earned " << frequentRenterPoints
-         << " frequent renter points";
-
-  return result.str();
+	return result.str();
 }
