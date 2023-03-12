@@ -3,17 +3,17 @@
 #define MOVIE_H
 #include <string>
 
+using namespace std;
+
 class Movie {
 public:
   static const int CHILDRENS   = 2;
   static const int REGULAR     = 0;
   static const int NEW_RELEASE = 1;
 
-  Movie( const std::string& title, int priceCode = REGULAR );
+  Movie( const string& title, int priceCode = REGULAR );
 
-  int getPriceCode() const;
-  void setPriceCode( int arg );
-  std::string getTitle() const;
+  string getTitle() const;
   double movieCost(int dayRetned) {
 
 	  double cost = 0.;
@@ -33,21 +33,22 @@ public:
 	  }
 	  return cost;
   }
+  int moviePoint(int dayRented);
 
 private:
-  std::string movieTitle;
+  string movieTitle;
   int moviePriceCode;
 };
 
-inline Movie::Movie( const std::string& title, int priceCode ): 
+inline int Movie::moviePoint(int dayRented) {
+	return (moviePriceCode == NEW_RELEASE && dayRented > 1) ? 2 : 1;
+}
+
+inline Movie::Movie( const string& title, int priceCode ): 
   movieTitle( title ),
   moviePriceCode( priceCode )
 {}
 
-inline int Movie::getPriceCode() const { return moviePriceCode; }
-
-inline void Movie::setPriceCode( int arg ) { moviePriceCode = arg; }
-
-inline std::string Movie::getTitle() const { return movieTitle; }
+inline string Movie::getTitle() const { return movieTitle; }
 
 #endif // MOVIE_H

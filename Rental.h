@@ -5,22 +5,11 @@
 
 class Rental {
 public:
-  Rental( const Movie& movie, int daysRented );
+  Rental( const Movie& movie, int daysRented = 1 );
 
-  int getDaysRented() const;
   const Movie& getMovie() const;
   double calcCost();
-
-  int calcRentPoint(Rental rent) {
-	  int point;
-	  // Add bonus for a two day new release rental
-	  if ((rent.getMovie().getPriceCode() == Movie::NEW_RELEASE) && rent.getDaysRented() > 1) 
-		  point = 2;
-	  else
-		  point = 1;
-
-	  return point;
-  }
+  int calcRentPoint();
 
 private:
   Movie rentedMovie;
@@ -31,11 +20,12 @@ inline double Rental::calcCost() {
 	return rentedMovie.movieCost(nDaysRented);
 }
 
+inline int Rental::calcRentPoint() {
+	return rentedMovie.moviePoint(nDaysRented);
+}
 inline Rental::Rental( const Movie& movie, int daysRented ):
   rentedMovie( movie ),
   nDaysRented( daysRented ) {}
-
-inline int Rental::getDaysRented() const { return nDaysRented; }
 
 inline const Movie& Rental::getMovie() const { return rentedMovie; }
 

@@ -20,7 +20,7 @@ string Customer::statement()
 		double thisAmount = rent.calcCost();
 
 		// Add frequent renter points
-		frequentRenterPoints += rent.calcRentPoint(rent);		
+		frequentRenterPoints += rent.calcRentPoint();		
 
 		// Show figures for this rental
 		result += receiptBody(rent.getMovie().getTitle(), thisAmount);
