@@ -14,6 +14,25 @@ public:
   int getPriceCode() const;
   void setPriceCode( int arg );
   std::string getTitle() const;
+  double movieCost(int dayRetned) {
+
+	  double cost = 0.;
+	  // Determine amounts for each rental
+	  switch (moviePriceCode) {
+	  case REGULAR:
+		  cost = (dayRetned > 2) ? 2 + ((dayRetned - 2) * 1.5) : 2;
+		  break;
+
+	  case NEW_RELEASE:
+		  cost = dayRetned * 3;
+		  break;
+
+	  case CHILDRENS:
+		  cost = (dayRetned > 3) ? 1.5 + ((dayRetned - 3) * 1.5) : 1.5;
+		  break;
+	  }
+	  return cost;
+  }
 
 private:
   std::string movieTitle;

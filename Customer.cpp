@@ -17,7 +17,7 @@ string Customer::statement()
 	for (Rental rent : myRent) {
 		
 		// Add rent cost
-		double thisAmount = rent.calcCost(rent);
+		double thisAmount = rent.calcCost();
 
 		// Add frequent renter points
 		frequentRenterPoints += rent.calcRentPoint(rent);		
