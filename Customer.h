@@ -12,12 +12,9 @@ using namespace std;
 
 class Customer {
 public:
-  Customer();
   explicit Customer( const string& name );
 
   void addRental(Movie* movie, int rentedDay);
-  string getName() const;
-
   // Generate a statement for the customer
   string statement();
   string receiptTop();
@@ -31,7 +28,7 @@ private:
 };
 
 inline string Customer::receiptTop() {
-	return "Rental Record for " + getName() + "\n";
+	return "Rental Record for " + customerName + "\n";
 }
 
 inline string Customer::receiptBody(string title, double cost) {
@@ -39,20 +36,11 @@ inline string Customer::receiptBody(string title, double cost) {
 }
 
 inline string Customer::receiptBotton(double totalAmount, int frequentRenterPoints) {
-
-	string bottom1 = "Amount owed is " + to_string(totalAmount) + "\n";
-	string bottom2 = "You earned " + to_string(frequentRenterPoints) + " frequent renter points";
-
-	return bottom1 + bottom2;
+	return "Amount owed is " + to_string(totalAmount) + "\n" 
+		+ "You earned " + to_string(frequentRenterPoints) + " frequent renter points";
 }
 
-inline Customer::Customer() {}
-
-inline Customer::Customer( const string& name ): 
-  customerName( name ) {}
+inline Customer::Customer( const string& name ):   customerName( name ) {}
 
 inline void Customer::addRental(Movie* movie, int rentedDay) { customerRentals.push_back({ *movie,rentedDay }); }
-
-inline string Customer::getName() const { return customerName; }
-
 #endif // CUSTOMER_HH

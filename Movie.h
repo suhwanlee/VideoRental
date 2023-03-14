@@ -15,7 +15,6 @@ public:
 
   string getTitle() const;
   double movieCost(int dayRetned) {
-
 	  double cost = 0.;
 	  // Determine amounts for each rental
 	  switch (moviePriceCode) {
@@ -44,10 +43,7 @@ inline int Movie::moviePoint(int dayRented) {
 	return (moviePriceCode == NEW_RELEASE && dayRented > 1) ? 2 : 1;
 }
 
-inline Movie::Movie( const string& title, int priceCode ): 
-  movieTitle( title ),
-  moviePriceCode( priceCode )
-{}
+inline Movie::Movie( const string& title, int priceCode ): movieTitle( title ), moviePriceCode( priceCode ){}
 
 inline string Movie::getTitle() const { return movieTitle; }
 

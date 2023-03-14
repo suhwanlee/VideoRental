@@ -23,9 +23,7 @@ inline double Rental::calcCost() {
 inline int Rental::calcRentPoint() {
 	return rentedMovie.moviePoint(nDaysRented);
 }
-inline Rental::Rental( const Movie& movie, int daysRented ):
-  rentedMovie( movie ),
-  nDaysRented( daysRented ) {}
+inline Rental::Rental( const Movie& movie, int daysRented ): rentedMovie( movie ), nDaysRented( daysRented ) {}
 
 inline const Movie& Rental::getMovie() const { return rentedMovie; }
 
