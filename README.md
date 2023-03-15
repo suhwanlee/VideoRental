@@ -16,14 +16,17 @@
         Improvement[4] : 코드 가독성 향상을 위한 코드 정리(미사용 함수 삭제, 범위 반복문, namespace, 함수/변수명 수정.
 
         [수정내역]
-        Refactoring[1] : -. iterator 삭제 후 범위기반의 반복문 적용하여 코드의 가독성 향상
-                         -. 대여로를 계산하는 switch-case문을 함수로 추출하여 그 기능을 Rental 객체에서 수행하도록 함수 이동
-        Refactoring[2] : -. 포인트를 계산하는 구문을 함수로 추출하여 그 기능을 Rental 객체에서 수행하도록 함수 이동
+        Refactoring[1] : -. iterator 삭제 후 범위기반의 반복문 적용하여 코드의 가독성 향상.
+                         -. 대여로를 계산하는 switch-case문을 함수로 추출하여 그 기능을 Rental 객체에서 수행하도록 함수 이동.
+        Refactoring[2] : -. 포인트를 계산하는 구문을 함수로 추출하여 그 기능을 Rental 객체에서 수행하도록 함수 이동.
         
-        Refactoring[3] : -. namespace 사용하여 코드의 가독성 향상
-                         -. 영수증을 생성하는 구문을 함수로 추출함
-                         -. ostringstream 삭제
-        Refactoring[4] : -. addRental 함수에 파라미터를 추가하여 main문 간결화
-        Refactoring[5] : -. Movie 캡슐화를 통해 Movie 객체에서 대여로를 계산하도록함 
-        Refactoring[6] : -. Movie 캡슐화를 통해 Movie 객체에서 포인트를 계산하도록함
-        Refactoring[7] : -. Movie.cpp 파일 삭제, Customer 미사용 생성자 및 함수 삭제 및 코드 정리
+        Refactoring[3] : -. namespace 사용하여 코드의 가독성 향상.
+                         -. 영수증을 생성하는 구문을 함수로 추출함.
+                         -. ostringstream 삭제.
+        Refactoring[4] : -. addRental 함수에 파라미터를 추가하여 main문 간결화.
+        Refactoring[5] : -. Movie 캡슐화를 통해 Movie 객체에서 대여로를 계산하도록함 .
+        Refactoring[6] : -. Movie 캡슐화를 통해 Movie 객체에서 포인트를 계산하도록함.
+        Refactoring[7] : -. Movie.cpp 파일 삭제, Customer 미사용 생성자 및 함수 삭제 및 코드 정리.
+        
+        [추후과정] : 영화의 장르가 더욱 세분화 될 경우, Movie 클래스를 상속받는 세부 장르의 class를 생성하여 확장이 쉽도록 변경 할것.
+        
